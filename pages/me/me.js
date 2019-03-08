@@ -17,8 +17,11 @@ Page({
   //检查签到
   checkScoreSign: function() {
     const accountId = app.globalData.userInfoId
+    console.log("checkScoreSign" + accountId)
     IntegralAPI.checkIntegral({ accountId }).then(res => {
-      app.globalData.isQd = res.data
+      this.setData({
+        isQd : res.data
+      });
     }).catch(err => {
       console.log('错了')
     })
@@ -60,7 +63,7 @@ Page({
   toHistory: function(){
     const accountId = app.globalData.userInfoId
     const page = 0
-    const size = app.globalData.userInfoId
+    const size = 10 * (page +1);
     const sort = 'createTime'
     const direction = 'desc'
     ArticleAPI.findReadLog({ accountId, page, size, sort, direction }).then(res => {
@@ -118,7 +121,7 @@ Page({
   aboutUs: function () {
     wx.showModal({
       title: '关于我们',
-      content: '版权所有，盗版爆菊\n祝大家使用愉快！',
+      content: '版权所有，盗版爆菊',
       showCancel: false
     })
   },

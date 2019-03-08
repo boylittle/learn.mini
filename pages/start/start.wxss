@@ -186,6 +186,7 @@ page{
   color: #fff;
 }
 .xhx {
-  float: right;
+  margin-left: 46%;
+  display:inline-block;
   text-decoration-line: underline;
 }

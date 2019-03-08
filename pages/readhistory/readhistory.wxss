@@ -16,10 +16,12 @@
 }
 /*列表左侧*/
 .history-items-left{
+  margin-top: 0px;
   float: left;
 }
 /*列表右侧*/
  .history-items-right{
-  margin-right: 20rpx;
-  float: right;
+   margin-right: 10px;
+   margin-bottom: 2px;
+   float: right;
 } 

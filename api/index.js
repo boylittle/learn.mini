@@ -26,6 +26,7 @@ function axios(data) {
 const ArticleAPI = {
   findBySamples: params => axios({ params: params, url: '/article/findBySamples', type: 'POST' }),
   findByPage: params => axios({ params: params, url: '/article/findByPage', type:'GET' }),
+  saveReadLog: params => axios({ params: params, url: '/article/saveReadLog', type: 'POST' }),
   findReadLog: params => axios({ params: params, url: '/article/findReadLog', type: 'GET' }),
   findById: params => axios({ params: params, url: '/article/findById', type: 'GET' })
 };

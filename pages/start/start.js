@@ -50,16 +50,24 @@ Page({
       params.userName = this.data.userName
       params.password = this.data.password
       UserAPI.register({ ...params }).then(res => {
-        wx.showToast({
-          title: '注册成功',
-          icon: 'succes',
-          duration: 1000,
-          mask: true
-        })
-        this.setData({
-          login: false
-        })
-        console.log(this.data.login)
+        if (res.code.code == 2000) {
+          wx.showToast({
+            title: '注册成功',
+            icon: 'succes',
+            duration: 1000,
+            mask: true
+          })
+          this.setData({
+            login: false
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '注册失败',
+            showCancel: false,
+            duration: 1000
+          })
+        }
       }).catch(err => {
         console.log('错了')
       })
@@ -72,9 +80,20 @@ Page({
     params.userName = this.data.userName
     params.password = this.data.password
     UserAPI.login({ ...params }).then(res => {
-      wx.switchTab({
-        url: '/pages/index/index',
-      });
+      if (res.code.code == 2000) {
+        console.log(res)
+        app.globalData.userInfoId = res.data.id;
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '账号密码错误',
+          showCancel: false,
+          duration: 1000
+        })
+      }
     }).catch(err => {
       console.log('错了')
     })

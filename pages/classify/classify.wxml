@@ -34,9 +34,9 @@
         <text>科目:{{classtype[content[0].type].classname}}</text>
         <block wx:for-items="{{content}}" wx:key="id" >
           <view class="page-content-list" bindtap="toContent" data-obj="{{content[index]}}">
-            <text>作者：{{content[index].teacherName}}</text>
-            <text class="page-content-right">创建时间：{{content[index].createTime}}</text>
             <text class="page-content-omit">{{content[index].title}}</text>
+            <text>作者：{{content[index].userName}}</text>
+            <text class="page-content-right">创建时间：{{content[index].createTime}}</text>
           </view>
         </block>
       </view>

@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/classify/classify",
     "pages/start/start",
+    "pages/classify/classify",
     "pages/index/index",
     "pages/content/content",
     "pages/me/me",
@@ -12,7 +12,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "阅读小程序",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {

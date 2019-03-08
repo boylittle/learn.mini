@@ -22,7 +22,12 @@
             <input class="login_text" placeholder="请输入密码" password="true" bindinput="listenerPasswordInput"/>
           </view>
           <view>
-            <button class="login_button" bindtap="login">登录</button><dev bindtap="toRegister" class="xhx">注册</dev>
+            <dev>
+              <button class="login_button" bindtap="login">登录</button>
+            </dev>
+            <dev>
+              <span bindtap="toRegister" class="xhx">注册</span>
+            </dev>
           </view>
         </view>
         <view wx:else class="login_container">

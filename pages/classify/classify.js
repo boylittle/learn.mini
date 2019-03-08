@@ -116,13 +116,30 @@ Page({
     //请求数据
     ArticleAPI.findByPage({ ...params }).then(res => {
       console.log(res)
-      const content = res.data.content;
-      for (var i = 0; i<content.length; i++){
-        content[i].createTime = this.formatTime(content[i].createTime)
+      if (res.code.code == 2000) {
+        const content = res.data.content;
+        if (content.length == 0) {
+          wx.showToast({
+            title: '暂无内容',
+            duration: 2000
+          })
+        } else {
+          for (var i = 0; i < content.length; i++) {
+            content[i].createTime = this.formatTime(content[i].createTime)
+          }
+        }
+        this.setData({
+          content
+        });
+      } else {
+        wx.showModal({
+          title: '提示',
+          content: '获取内容失败', 
+          showCancel: false,
+          duration: 1000
+        })
       }
-      this.setData({
-        content
-      });
+      
     }).catch(err =>{
       console.log('错了')
     })
@@ -131,6 +148,16 @@ Page({
   toContent: function (event) {
     app.globalData.contentObj = event.currentTarget.dataset.obj;
     app.globalData.firstColor = this.data.firstColor;
+    //记录文章浏览记录
+    var params = new Object();
+    params.accountId = app.globalData.userInfoId
+    params.teacherAccountId = event.currentTarget.dataset.obj.userId
+    params.articleId = event.currentTarget.dataset.obj.id
+    params.title = event.currentTarget.dataset.obj.title
+    ArticleAPI.saveReadLog({ ...params }).then(res => {
+    }).catch(err => {
+      console.log('错了')
+    })
     wx.navigateTo({
       url: '/pages/content/content'
     })
